@@ -2,75 +2,72 @@
 
 <div align="center">
 
-![GitHub stars](https://img.shields.io/github/stars/saurav-z/free-image-generation-api?style=social)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Cloudflare](https://img.shields.io/badge/Cloudflare-Workers-orange.svg)
-![AI](https://img.shields.io/badge/AI-Stable%20Diffusion-purple.svg)
-
-**🚀 Deploy your own free AI image generation API in minutes!**
+**🚀 Spin up your own AI image generation API in minutes — at zero cost!**
 
 </div>
 
-This project lets you deploy your own **free AI image generation API** using Cloudflare Workers, with up to **100,000 API calls per day**. Generate stunning images from text prompts using powerful models like Stable Diffusion XL! 🎨
+This project helps you quickly create a **text-to-image generation API** powered by Cloudflare Workers. With support for up to **100,000 free requests per day**, you can generate high-quality images from prompts using models like Stable Diffusion XL. 🎨
 
 ## ✨ Features
-- 🆓 **100,000 free API calls per day** (Cloudflare Workers AI free tier)
-- ⚡ **Lightning-fast** image generation from text prompts
-- 🛠️ **Easy to deploy** - no coding experience required
-- 🔒 **Secure** with API key authentication
-- 🎯 **Multiple AI models** available
+- 🆓 **100,000 daily free requests** via Cloudflare Workers AI
+- ⚡ **High-speed generation** from simple text prompts
+- 🛠️ **Quick setup process** with minimal effort
+- 🔒 **Protected endpoints** using API key authentication
+- 🎯 **Flexible model support** for different use cases
 
 ---
 
 ## 🚀 How It Works
-- 📤 You deploy a Cloudflare Worker using the provided `worker.js` file
-- 🌐 The Worker exposes a simple API endpoint for image generation
-- 🔐 You authenticate using your own API key
-- 🤖 The Worker uses Cloudflare's free AI models to generate images
+- 📤 Deploy the provided `worker.js` file as a Cloudflare Worker  
+- 🌐 The Worker acts as an API endpoint for generating images  
+- 🔐 Access is controlled through your custom API key  
+- 🤖 Cloudflare Workers AI processes prompts and returns images  
 
 ---
 
 ## 📋 Setup Instructions
 
-### 1. 🌟 Get a Cloudflare Account
-- Sign up at [Cloudflare](https://dash.cloudflare.com/sign-up) if you don't have one
+### 1. 🌟 Create a Cloudflare Account
+- Register at https://dash.cloudflare.com/sign-up if you don’t already have an account  
 
-### 2. ⚡ Create a New Worker
-- Go to the [Cloudflare Workers dashboard](https://dash.cloudflare.com/workers)
-- Click **"Create application"** 🎯
-- Choose **"Create Worker"** 
-- Give it a name like `free-image-generation-api` 📝
-- Click **"Deploy"** to create a Hello World worker 🚀
+### 2. ⚡ Create Your Worker
+- Open the Cloudflare Workers dashboard  
+- Click **"Create application"**  
+- Select **"Create Worker"**  
+- Name it something like `ai-image-api`  
+- Click **"Deploy"** to initialize it  
 
-### 3. 🔧 Replace the Worker Code
-- In the worker editor, replace the default Hello World code with the `worker.js` code from this repo 📄
-- Click **"Save and Deploy"** ✅
+### 3. 🔧 Update the Worker Code
+- Open the worker editor  
+- Replace the default code with the `worker.js` from this repository  
+- Click **"Save and Deploy"**  
 
-### 4. 🔑 Set Up Environment Variables
-- In your worker dashboard, go to **"Settings"** > **"Variables"** ⚙️
-- Under **"Environment Variables"**, click **"Add variable"** ➕
-- Name: `API_KEY` 🏷️
-- Value: `your-secret-api-key` (replace with a strong secret key) 🔒
-- Click **"Save and Deploy"** 💾
+### 4. 🔑 Add Environment Variables
+- Go to **"Settings"** → **"Variables"**  
+- Add a new variable:
+  - Name: `API_KEY`  
+  - Value: `your-secret-api-key`  
+- Save and deploy  
 
-### 5. 🤖 Enable Workers AI
-- In the Cloudflare dashboard, go to **"Workers & Pages"** > **"AI"** 🧠
-- Enable Workers AI for your account (free tier is enough) 🆓
+### 5. 🤖 Activate Workers AI
+- Navigate to **"Workers & Pages"** → **"AI"**  
+- Enable Workers AI (free tier works fine)  
 
-### 6. 🔗 Add AI Binding to Your Worker
-- Go back to your worker's dashboard
-- Click on **"Settings"** > **"Variables"** ⚙️
-- Scroll down to **"Service bindings"** section
-- Click **"Add binding"** ➕
-- Variable name: `AI` 🏷️
-- Service: Select **"Workers AI"** from dropdown 🤖
-- Click **"Save and Deploy"** ✅
+### 6. 🔗 Configure AI Binding
+- Return to your worker settings  
+- Open **"Variables"**  
+- Scroll to **"Service bindings"**  
+- Add a binding:
+  - Variable: `AI`  
+  - Service: **Workers AI**  
+- Save and deploy  
 
-> ⚠️ **Important:** Without this AI binding, your worker won't be able to access Cloudflare's AI models!
+> ⚠️ **Important:** Without this binding, your worker won’t be able to generate images.
 
-### 7. 🌐 Get Your Worker URL
-- Your worker will be available at: `https://<your-worker-name>.<your-subdomain>.workers.dev` 🔗
-- You can find the exact URL in your worker's dashboard 📍
+### 7. 🌐 Access Your API
+- Your endpoint will look like:  
+  `https://<your-worker-name>.<your-subdomain>.workers.dev`  
+- You can copy it from the dashboard  
 
 ---
 
@@ -81,33 +78,34 @@ This project lets you deploy your own **free AI image generation API** using Clo
 curl -X POST https://<your-worker-name>.<your-subdomain>.workers.dev \
   -H "Authorization: Bearer your-secret-api-key" \
   -H "Content-Type: application/json" \
-  -d '{"prompt": "A cute robot cooking breakfast"}' \
-  --output image.jpg
+  -d '{"prompt": "A robot making coffee in a modern kitchen"}' \
+  --output output.jpg
 ```
 
 ### 🌐 JavaScript Example
 ```js
-const res = await fetch("https://<your-worker-name>.<your-subdomain>.workers.dev", {
+const response = await fetch("https://<your-worker-name>.<your-subdomain>.workers.dev", {
   method: "POST",
   headers: {
     "Authorization": "Bearer your-secret-api-key",
     "Content-Type": "application/json",
   },
-  body: JSON.stringify({ prompt: "A futuristic city in the clouds" }),
+  body: JSON.stringify({ prompt: "A floating city above the clouds at sunset" }),
 });
-const blob = await res.blob();
-const img = document.createElement("img");
-img.src = URL.createObjectURL(blob);
-img.style.height = "500px";
-document.body.appendChild(img);
+
+const imageBlob = await response.blob();
+const image = document.createElement("img");
+image.src = URL.createObjectURL(imageBlob);
+image.style.height = "500px";
+document.body.appendChild(image);
 ```
 
 ---
 
 ## 📝 Notes
-- 🆓 **Free Tier:** Cloudflare Workers AI free tier allows 100,000 AI requests per day. See [Cloudflare pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/) for details.
-- 🎨 **Models:** You can change the model in `worker.js` to use other available models (see comments in the file).
-- 🔒 **Security:** Keep your API key secret. Rotate it if needed.
+- 🆓 **Free Tier:** Allows up to 100,000 requests daily (check Cloudflare docs for updates)  
+- 🎨 **Model Selection:** You can modify the model inside `worker.js`  
+- 🔒 **Security Tip:** Keep your API key private and rotate it if needed  
 
 ---
 
@@ -118,6 +116,6 @@ MIT License ⭐
 
 <div align="center">
 
-**⭐ Star this repo if it helped you! ⭐**
+**⭐ If this helped you, consider starring the repo! ⭐**
 
 </div>
